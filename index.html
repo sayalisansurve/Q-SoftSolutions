@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Q-Soft Solutions</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', sans-serif;
+    scroll-behavior: smooth;
+}
+
+body {
+    overflow-x: hidden;
+}
+/* HEADER BAR */
+.top-header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    padding: 10px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(0,0,0,0.7);
+    z-index: 1000;
+}
+
+/* LEFT SIDE TEXT */
+.logo h1 {
+    color: white;
+    font-size: 33px;
+}
+
+.logo p {
+    color: #ccc;
+    font-size: 12px;
+}
+
+/* RIGHT SIDE NAV */
+nav a {
+    color: white;
+    margin-left: 20px;
+    text-decoration: none;
+    font-size: 15px;
+}
+
+nav a:hover {
+    color: gold;
+}
+/* NAVBAR */
+/* nav {
+    position: fixed;
+    width: 100%;
+    top: 0;
+    padding: 15px;
+    text-align: center;
+    background: rgba(0,0,0,0.6);
+    z-index: 1000;
+}
+
+nav a {
+    color: white;
+    margin: 0 20px;
+    text-decoration: none;
+    font-size: 16px;
+}
+
+nav a:hover {
+    color: gold;
+} */
+
+/* FULL SCREEN SECTIONS */
+.section {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    padding-left: 80px;
+    color: white;
+    position: relative;
+}
+
+/* OVERLAY */
+.section::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.5);
+}
+
+/* TEXT */
+.content {
+    position: relative;
+    max-width: 600px;
+    z-index: 1;
+}
+
+.content h1 {
+    font-size: 50px;
+    margin-bottom: 15px;
+}
+
+.content p {
+    font-size: 18px;
+}
+
+/* DIFFERENT BACKGROUNDS */
+.erp {
+    background: url('../images/erp.png') center/cover no-repeat;
+}
+
+.accounting {
+    background: url('../images/AccountingSoftware.jpg') center/cover no-repeat;
+}
+
+.foundry {
+    background: url('../images/Foundry.png') center/cover no-repeat;
+}
+
+.inventory {
+    background: url('../images/Inventory.png') center/cover no-repeat;
+}
+.tea {
+    background: url('../images/Tea.png') center/cover no-repeat;
+}
+.contact {
+    background: #111;
+    text-align: center;
+    justify-content: center;
+    height: 20vh;
+}
+/* .header {
+    background: url('header.jpg') center/cover no-repeat;
+    height: 27vh;
+}
+.header::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to right, rgba(0,0,0,0.7), rgba(0,0,0,0.3));
+} */
+</style>
+</head>
+
+<body>
+<header class="top-header" id="topheader">
+    <div class="logo">
+<!-- <section class="section header"> -->
+    <!-- <div class="content"> -->
+        <h1>Q-Soft Solutions</h1>
+        <p>Innovative Software Development for Every Industry</p>
+    </div>
+<!-- </section> -->
+ <nav>
+     <a href="#erp">Home</a>
+    <a href="#erp">ERP</a>
+    <a href="#accounting">Accounting</a>
+    <a href="#foundry">Foundry</a>
+    <a href="#inventory">Inventory</a>
+    <a href="#contact">Contact</a>
+</nav>
+
+ </header>
+<!-- NAV -->
+
+<!-- ERP -->
+<section id="erp" class="section erp" src="ERP.png">
+    <div class="content">
+        <h1>ERP Software</h1>
+        <p>Complete business automation solution for modern enterprises.</p>
+    </div>
+</section>
+
+<!-- ACCOUNTING -->
+<section id="accounting" class="section accounting">
+    <div class="content">
+        <h1>Accounting Software</h1>
+        <p>Smart financial tracking and reporting system.</p>
+    </div>
+</section>
+
+<!-- FOUNDRY -->
+<section id="foundry" class="section foundry">
+    <div class="content">
+        <h1>Foundry Software</h1>
+        <p>Industry-specific automation and process control.</p>
+    </div>
+</section>
+
+<!-- INVENTORY -->
+<section id="inventory" class="section inventory">
+    <div class="content">
+        <h1>Inventory & Accounting</h1>
+        <p>Manage stock and accounts in one powerful system.</p>
+    </div>
+</section>
+<!-- Tea Shop -->
+<section id="tea" class="section tea">
+    <div class="content">
+        <h1>Tea Shop & Marketing Mangement</h1>
+        <p>Tea Shop Marketing System</p>
+    </div>
+</section>
+<!-- CONTACT -->
+<section id="contact" class="section contact">
+    <div class="content">
+        <h1>Contact Us</h1>
+        <p>Sandeep Surve, Kolhapur, Maharashtra<br>Mobile: 9890895464</p>
+    </div>
+</section>
+
+</body>
+</html>
