@@ -149,6 +149,25 @@ nav a:hover {
     width: 100%;
     height: 300%;
 }
+#erp {
+    background: url('images/ERP.png') center/cover no-repeat;
+}
+
+#accounting {
+    background: url('images/AccountingSoftware.jpg') center/cover no-repeat;
+}
+
+#dhoodh {
+    background: url('images/dhoodhSangha.png') center/cover no-repeat;
+}
+
+
+#tea {
+    background: url('images/Tea.png') center/cover no-repeat;
+}
+#website {
+    background: url('images/website.jpg') center/cover no-repeat;
+}
 /***************** END div_main *******************/
 /***************** START Contact ************************/
     .footer {
