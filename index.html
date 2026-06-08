@@ -1,176 +1,516 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style2.css">
-    <link rel="stylesheet" href="script.js">
     <title>Q-Soft Solutions</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2 family=Rubik:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* Base Setup & Resets */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        .scroll-smooth {
+            scroll-behavior: smooth;
+        }
+
+        body { 
+            font-family: 'Rubik', sans-serif; 
+            background-color: #f8fafc;
+            color: #334155;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        /* Layout Container */
+        .container {
+            max-width: 80rem; /* 1280px */
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        /* Header Styling */
+        #topheader {
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            background-color: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(226, 232, 240, 0.8);
+            box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+        }
+
+        .header-wrap {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+            padding: 1rem 1.5rem;
+        }
+
+        @media (min-width: 640px) {
+            .header-wrap {
+                flex-direction: row;
+            }
+        }
+
+        .header-title-area {
+            text-align: center;
+        }
+
+        @media (min-width: 640px) {
+            .header-title-area {
+                text-align: left;
+            }
+        }
+
+        .header-title-area h1 {
+            font-size: 1.875rem;
+            font-weight: 800;
+            color: #0f172a;
+            letter-spacing: -0.025em;
+            line-height: 1.2;
+        }
+
+        .header-title-area p {
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: #64748b;
+            margin-top: 0.125rem;
+        }
+
+        .main-nav {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            font-weight: 600;
+            font-size: 0.875rem;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: #475569;
+            transition: color 0.2s ease;
+        }
+
+        .nav-link:hover {
+            color: #2563eb;
+        }
+
+        .btn-primary {
+            display: inline-block;
+            text-decoration: none;
+            background-color: #2563eb;
+            color: #ffffff;
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            box-shadow: 0 4px 6px -1px rgba(37, 99, 235, 0.1), 0 2px 4px -1px rgba(37, 99, 235, 0.06);
+            transition: background-color 0.2s ease;
+        }
+
+        .btn-primary:hover {
+            background-color: #1d4ed8;
+        }
+
+        /* Portfolio Main Grid */
+        #portfolio {
+            flex-grow: 1;
+            padding: 3rem 1.5rem;
+        }
+
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+        }
+
+        @media (min-width: 768px) {
+            .portfolio-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .portfolio-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        /* Project Cards */
+        .card {
+            background-color: #ffffff;
+            border-radius: 1rem;
+            border: 1px solid #e2e8f0;
+            padding: 1.25rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-0.5rem);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+
+        .card-center {
+            justify-content: center;
+            align-items: center;
+        }
+
+        .img-container {
+            overflow: hidden;
+            border-radius: 0.75rem;
+            background-color: #f1f5f9;
+            height: 12rem;
+            margin-bottom: 1.25rem;
+            border: 1px solid #f1f5f9;
+        }
+
+        .card-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .card:hover .card-img {
+            transform: scale(1.05);
+        }
+
+        #Visitingcard-image {
+            object-fit: contain;
+        }
+
+        .card-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #0f172a;
+            margin-bottom: 0.25rem;
+        }
+
+        .card-desc {
+            font-size: 0.875rem;
+            color: #64748b;
+            margin-bottom: 1.25rem;
+        }
+
+        /* Scrollable List styling */
+        .client-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0.375rem;
+            max-height: 13rem;
+            overflow-y: auto;
+            padding-right: 0.25rem;
+        }
+
+        /* Basic custom scrollbar */
+        .client-list::-webkit-scrollbar {
+            width: 4px;
+        }
+        .client-list::-webkit-scrollbar-thumb {
+            background-color: #cbd5e1;
+            border-radius: 2px;
+        }
+
+        .client-item {
+            font-size: 0.75rem;
+            font-weight: 500;
+            color: #334155;
+            background-color: #f8fafc;
+            padding: 0.375rem 0.75rem;
+            border-radius: 0.375rem;
+            border-left: 2px solid #f59e0b;
+            box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+        }
+
+        .link-item {
+            color: #2563eb;
+            text-decoration: none;
+        }
+
+        .link-item:hover {
+            text-decoration: underline;
+        }
+
+        /* Footer Section */
+        #contact {
+            background-color: #0f172a;
+            color: #ffffff;
+            padding: 4rem 1.5rem;
+        }
+
+        .footer-top {
+            display: grid;
+        
+            grid-template-columns: 1fr;
+            gap: 3rem;
+            align-items: center;
+            border: 1px solid #1e293b;
+            padding-bottom: 3rem;
+            margin-bottom: 2rem;
+            border-bottom: 1px solid #1e293b;
+        }
+
+        @media (min-width: 1024px) {
+            .footer-top {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        .footer-heading {
+            font-size: 1.875rem;
+            font-weight: 700;
+            
+            /* tracking-tight: -0.025em; */
+            margin-bottom: 1rem;
+        }
+
+        .footer-text {
+            color: #94a3b8;
+        }
+
+        .footer-action {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        @media (min-width: 640px) {
+            .footer-action {
+                flex-direction: row;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .footer-action {
+                justify-content: flex-end;
+            }
+        }
+
+        .btn-footer {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            background-color: #2563eb;
+            color: #ffffff;
+            font-weight: 600;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.75rem;
+            transition: background-color 0.2s ease;
+            text-align: center;
+        }
+
+        .btn-footer:hover {
+            background-color: #1d4ed8;
+        }
+
+        .footer-bottom {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.875rem;
+            color: #64748b;
+        }
+
+        @media (min-width: 640px) {
+            .footer-bottom {
+                flex-direction: row;
+            }
+        }
+
+        .footer-meta-text {
+            margin-top: 1rem;
+        }
+
+        @media (min-width: 640px) {
+            .footer-meta-text {
+                margin-top: 0;
+            }
+        }
+        .map iframe {
+            width: 100%;
+            height: 400px;
+            border: 0;
+            }
+
+    </style>
 </head>
 <body>
-    
-        <header class="top-header" id="topheader">
-            <div class="logo">
 
-                    <h1>Q-Soft Solutions</h1>
-                    <p>Innovative Software Development for Every Industry</p>
-                </div>
-                <!-- </section> -->
-                <nav>
-                    <!--    <a href="#erp">About Us</a> -->
-                    <!-- <a href="#erp">ERP</a>
-                    <a href="#accounting">Accounting</a>
-                    <a href="#foundry">Foundry</a>
-                    <a href="#inventory">Inventory</a>
-                    <a href="#tea">Tea</a>
-                    <a href="#website">Website</a> -->
-                    <a href="#Visitingcard-image">Contact</a>
-                </nav>
+    <header id="topheader">
+        <div class="container header-wrap">
+            <div class="header-title-area">
+                <h1>Q-Soft Solutions</h1>
+                <p>Innovative Software Development for Every Industry</p>
+            </div>
+            <nav class="main-nav">
+                <a href="index.html" class="nav-link">Our Portfolio</a>
+                <a href="erpModule.html" class="nav-link">System Tour</a>
+                <a href="#contact" class="btn-primary">Contact</a>
+            </nav>
+        </div>
+    </header>
 
-        </header>
-        <section class="section_Start">
-
-            <div class="card-grid" >
-                <div class="card"  > 
-                    <img src="images/ERP.png" alt="" class ="card-image">
-                    <div class="card-description">
-                        <h1>Enterprise Software </h1>
-                        <p>ERP,Inventory & Accounting, Business Applications</p>
-                       
-                        <!-- <div class="client-grid"> -->
-                        <div class="client-card" >Gaurav Machine Tools</div>
-                        <div class="client-card">Gokul Metatech</div>
-                        <div class="client-card">Vishanusons Industries</div>
-                        <div class="client-card">Gajanan Industries</div>
-                         <div class="client-card">Pirajirao Ghadge Trust</div>
-                        <div class="client-card">Apco Industries</div>
-                        <div class="client-card">Venkateshwara Packaging</div>
-                        <div class="client-card">Nohel Engg.</div>
-                        <div class="client-card">Avasas Pack & Print</div>
-                        <div class="client-card">Versatile Equipment Pvt. Ltd.</div>
-                        <div class="client-card">Alpha Industries</div>
-                        <div class="client-card">Ganesh Industries</div>
-       
-                         <!-- </div> -->
+    <main id="portfolio" class="container">
+        <div class="portfolio-grid">
+            
+            <!-- Card 1: Enterprise Software -->
+            <div class="card">
+                <div>
+                    <div class="img-container">
+                        <img src="images/ERP.png" alt="Enterprise Software" class="card-img">
                     </div>
-                </div>
-                <div class="card"> 
-                    <img src="images/AccountingSoftware.jpg" alt="" class ="card-image">
-                     <div class="card-description">
-                        <h1>Inventory & Accounting</h1>
-                        <p>Smart financial tracking and reporting system.</p>
-                       
-                        <!-- <div class="client-grid"> -->
-                        <div class="client-card" >Mahalaxmi Wire Cut</div>
-                        <div class="client-card">Ravi Batteries</div>
-                        <div class="client-card">Shree Enterprises</div>
-                        <div class="client-card">Firefly Fire Pumps</div>
-                        <div class="client-card">Suprem Concrete</div>
-                        <div class="client-card">Sushant Transport</div>
-                        <div class="client-card">Tambaku Sangh</div>
-                        <div class="client-card">Mayur Tea</div>
-                        <div class="client-card">-</div>
-                        <div class="client-card">-</div>
-                        <div class="client-card">-</div>
-                        <div class="client-card">-</div>
-                        
-                         <!-- </div> -->
+                    <h2 class="card-title">Enterprise Software</h2>
+                    <p class="card-desc">ERP, Inventory & Accounting, Business Applications</p>
+                    
+                    <div class="client-list">
+                        <div class="client-item">Gaurav Machine Tools</div>
+                        <div class="client-item">Gokul Metatech</div>
+                        <div class="client-item">Vishanusons Industries</div>
+                        <div class="client-item">Gajanan Industries</div>
+                        <div class="client-item">Pirajirao Ghadge Trust</div>
+                        <div class="client-item">Apco Industries</div>
+                        <div class="client-item">Venkateshwara Packaging</div>
+                        <div class="client-item">Nohel Engg.</div>
+                        <div class="client-item">Avasas Pack & Print</div>
+                        <div class="client-item">Versatile Equipment Pvt. Ltd.</div>
+                        <div class="client-item">Alpha Industries</div>
+                        <div class="client-item">Ganesh Industries</div>
                     </div>
-                </div>
-                
-                <div class="card"> 
-                     <img src="images/dhoodhSangha.png" alt="" class ="card-image">
-                     <div class="card-description">
-                        <h1>Dhoodh Sangh ERP </h1>
-                        <p>Billing Solutions.</p>
-                       
-                        <!-- <div class="client-grid"> -->
-                        <div class="client-card" >Mayur Dhoodh Sangh Kolhapur</div>
-                        <div class="client-card">Mayur Dhoodh Sangh Shinoli</div>
-                        <div class="client-card">Shayadri Dhoodh Sangh</div>
-                        <div class="client-card">Sham Milk Pune</div>
-                        <div class="client-card">Pancham Dhoodh Dairy Gadhingalaj</div>
-                        <div class="client-card">Das Dairy Jat</div>
-                        <div class="client-card">-</div>
-                        <div class="client-card">-</div>
-                        <div class="client-card">-</div>
-                        <div class="client-card">-</div>
-                         <div class="client-card">-</div>
-                        <div class="client-card">-</div>
-                        
-                         <!-- </div> -->
-                    </div>
-                </div>
-                 
-               
-                
-                <div class="card"> 
-                     <img src="images/Tea.png" alt="" class ="card-image">
-                     <div class="card-description">
-                        <h1>Tea Shop Marketing System</h1>
-                        <p>Smart financial tracking and reporting system.</p>
-                       
-                        <!-- <div class="client-grid"> -->
-                        <div class="client-card" >Balaji Tea</div>
-                        <div class="client-card">-</div>
-                        <div class="client-card">-</div>
-                        <div class="client-card">-</div>
-                        <div class="client-card">-</div>
-                         <div class="client-card">-</div>
-                        <div class="client-card">-</div>
-                        <div class="client-card">-</div>
-                        <div class="client-card">-</div>
-                        <div class="client-card">-</div>
-                        <div class="client-card">-</div>
-                        <div class="client-card">-</div>
-                        <div class="client-card">-</div>
-                        
-                        
-                         <!-- </div> -->
-                    </div>
-                </div>
-                <div class="card"> 
-                     <img src="images/website.jpg" alt="" class ="card-image">
-                     <div class="card-description">
-                        <h1>Innovative Website Development</h1>
-                        <p>Custom Software Solutions for Your Business Growth</p>
-                       
-                        <!-- <div class="client-grid"> -->
-                        <div class="client-card" ><a href="https://sayalisansurve.github.io/AnusayaTours-Travels/" target="_blank"> Anusaya Tours & Travels</a></div>
-                        <div class="client-card"><a href="https://sayalisansurve.github.io/GoodHealth-Homeopathic-Clinic/" target="_blank"> Good Health Homeopathy Clinic</a></div>
-                        <div class="client-card">-</div>
-                        <div class="client-card">-</div>
-                        <div class="client-card">-</div>
-                        <div class="client-card">-</div>
-                         <div class="client-card">-</div>
-                        <div class="client-card">-</div>
-                        <div class="client-card">-</div>
-                        <div class="client-card">-</div>
-                        <div class="client-card">-</div>
-                        <div class="client-card">-</div>
-                        <div class="client-card">-</div>
-                        <div class="client-card">-</div>
-                         <!-- </div> -->
-                    </div>
-                </div>
-                <div class="card"> 
-                     <img src="images/VisitingCard_Instagram.png" alt="" id ="Visitingcard-image">
-                     <!-- <div class="card-description">
-                        <h1>solutions for Business</h1>
-                         <div class="client-card">-</div>
-                     </div> -->
                 </div>
             </div>
 
-    </section>
-    <!-- CONTACT -->
-    <!-- <section id="contact" class="section_contact"> -->
-        <div class="footer">
-            <h1>© 2026 Good Q-Soft Solutions | Kolhapur</h1> 
-            
-                
-            
+            <!-- Card 2: Inventory & Accounting -->
+            <div class="card">
+                <div>
+                    <div class="img-container">
+                        <img src="images/AccountingSoftware.jpg" alt="Inventory & Accounting" class="card-img">
+                    </div>
+                    <h2 class="card-title">Inventory & Accounting</h2>
+                    <p class="card-desc">Smart financial tracking and reporting system.</p>
+                    
+                    <div class="client-list">
+                        <div class="client-item">Mahalaxmi Wire Cut</div>
+                        <div class="client-item">Ravi Batteries</div>
+                        <div class="client-item">Shree Enterprises</div>
+                        <div class="client-item">Firefly Fire Pumps</div>
+                        <div class="client-item">Suprem Concrete</div>
+                        <div class="client-item">Sushant Transport</div>
+                        <div class="client-item">Tambaku Sangh</div>
+                        <div class="client-item">Mayur Tea</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 3: Dhoodh Sangh ERP -->
+            <div class="card">
+                <div>
+                    <div class="img-container">
+                        <img src="images/dhoodhSangha.png" alt="Dhoodh Sangh ERP" class="card-img">
+                    </div>
+                    <h2 class="card-title">Dhoodh Sangh ERP</h2>
+                    <p class="card-desc">Billing Solutions.</p>
+                    
+                    <div class="client-list">
+                        <div class="client-item">Mayur Dhoodh Sangh Kolhapur</div>
+                        <div class="client-item">Mayur Dhoodh Sangh Shinoli</div>
+                        <div class="client-item">Shayadri Dhoodh Sangh</div>
+                        <div class="client-item">Sham Milk Pune</div>
+                        <div class="client-item">Pancham Dhoodh Dairy Gadhingalaj</div>
+                        <div class="client-item">Das Dairy Jat</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 4: Tea Shop Marketing System -->
+            <div class="card">
+                <div>
+                    <div class="img-container">
+                        <img src="images/Tea.png" alt="Tea Shop Marketing System" class="card-img">
+                    </div>
+                    <h2 class="card-title">Tea Shop Marketing System</h2>
+                    <p class="card-desc">Smart financial tracking and reporting system.</p>
+                    
+                    <div class="client-list">
+                        <div class="client-item">Balaji Tea</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 5: Innovative Website Development -->
+            <div class="card">
+                <div>
+                    <div class="img-container">
+                        <img src="images/website.jpg" alt="Innovative Website Development" class="card-img">
+                    </div>
+                    <h2 class="card-title">Innovative Website Development</h2>
+                    <p class="card-desc">Custom Software Solutions for Your Business Growth</p>
+                    
+                    <div class="client-list">
+                        <div class="client-item">
+                            <a href="https://sayalisansurve.github.io/AnusayaTours-Travels/" target="_blank" class="link-item">Anusaya Tours & Travels</a>
+                        </div>
+                        <div class="client-item">
+                            <a href="https://sayalisansurve.github.io/GoodHealth-Homeopathic-Clinic/" target="_blank" class="link-item">Good Health Homeopathy Clinic</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 6: Contact Card Image -->
+            <div class="card card-center">
+                <div class="img-container" style="width: 100%; height: 100%; margin-bottom: 0;">
+                    <img src="images/VisitingCard_Instagram.png" alt="Contact Card" id="Visitingcard-image" class="card-img">
+                </div>
+            </div>
+
         </div>
-    <!-- </section> -->
+    </main>
+    <div class="map">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3821.902599424436!2d74.23877957519466!3d16.681756784090023!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xadfb9d1b946597ff%3A0x14c4f75d337c4b84!2sQ-Soft%20Solutions!5e0!3m2!1sen!2sin!4v1780902524305!5m2!1sen!2sin" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
+    <!-- Footer / Contact CTA Section -->
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-top">
+                <div>
+                    <h2 class="footer-heading">Ready to simplify your business operations?</h2>
+                    <p class="footer-text">Get in touch today for a tailored quote and layout blueprint customized exactly to your company's scale.</p>
+                </div>
+                <div class="footer-action">
+                    <!-- <a href="sandeepsurvekop@yahoo.co.in" class="btn-footer"> -->
+                        Mr. Sandeep Surve <br>
+                        Phone : +91 9890895464 <br>
+                        Email : sandeepsurvekop@gmail.com
+                        
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Q-Soft Solutions. All rights reserved.</p>
+                <!-- <div class="footer-meta-text">
+                    <p>Built with Speed & Precision</p>
+                </div> -->
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
 </body>
 </html>
