@@ -1,0 +1,911 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Custom ERP, Inventory & Accounting Software Solutions</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- <link rel="stylesheet" href="style.css"> -->
+    
+    <style>
+        /* Base Setup & Resets */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        .scroll-smooth {
+            scroll-behavior: smooth;
+        }
+
+        body { 
+            font-family: 'Inter', sans-serif; 
+            background-color: #f8fafc;
+            color: #334155;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* Layout Container */
+        .container {
+            max-width: 80rem; /* 1280px */
+            margin: 0 auto;
+            padding-left: 1.5rem;
+            padding-right: 1.5rem;
+            width: 100%;
+        }
+
+        /* Header Styling */
+        #topheader {
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            background-color: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(226, 232, 240, 0.8);
+            box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+            transition: all 0.2s ease;
+        }
+
+        .header-wrap {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+            padding-top: 1rem;
+            padding-bottom: 1rem;
+        }
+
+        @media (min-width: 640px) {
+            .header-wrap {
+                flex-direction: row;
+            }
+        }
+
+        .header-title-area {
+            text-align: center;
+        }
+
+        @media (min-width: 640px) {
+            .header-title-area {
+                text-align: left;
+            }
+        }
+
+        .header-title-area h1 {
+            font-size: 1.875rem;
+            font-weight: 800;
+            color: #0f172a;
+            letter-spacing: -0.025em;
+            line-height: 1.2;
+        }
+
+        .header-title-area p {
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: #64748b;
+            margin-top: 0.125rem;
+        }
+
+        .main-nav {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            font-weight: 600;
+            font-size: 0.875rem;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: #475569;
+            transition: color 0.2s ease;
+        }
+
+        .nav-link:hover {
+            color: #2563eb;
+        }
+
+        .btn-nav-contact {
+            background-color: #2563eb;
+            color: #ffffff;
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+            transition: background-color 0.2s ease, box-shadow 0.2s ease;
+            box-shadow: 0 4px 6px -1px rgba(37, 99, 235, 0.1);
+            text-decoration: none;
+        }
+
+        .btn-nav-contact:hover {
+            background-color: #1d4ed8;
+        }
+
+        /* Hero Section */
+        .hero-section {
+            position: relative;
+            overflow: hidden;
+            padding: 1rem 0;
+            background: linear-gradient(to bottom, rgba(239, 246, 255, 0.5), #ffffff);
+        }
+
+        @media (min-width: 1024px) {
+            .hero-section {
+                padding: 8rem 0;
+            }
+        }
+
+        .hero-content {
+            max-width: 64rem;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.375rem;
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            background-color: #dbeafe;
+            color: #1d4ed8;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-section h1 {
+            font-size: 2.25rem;
+            font-weight: 700;
+            color: #0f172a;
+            letter-spacing: -0.025em;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+        }
+
+        @media (min-width: 768px) {
+            .hero-section h1 {
+                font-size: 3rem;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .hero-section h1 {
+                font-size: 3.75rem;
+            }
+        }
+
+        .text-blue {
+            color: #2563eb;
+        }
+
+        .hero-desc {
+            font-size: 1.125rem;
+            color: #475569;
+            max-width: 48rem;
+            margin: 0 auto 2.5rem auto;
+            line-height: 1.625;
+        }
+
+        @media (min-width: 768px) {
+            .hero-desc {
+                font-size: 1.25rem;
+            }
+        }
+
+        .hero-actions {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+            justify-content: center;
+        }
+
+        @media (min-width: 640px) {
+            .hero-actions {
+                flex-direction: row;
+            }
+        }
+
+        .btn-hero-primary {
+            width: 100%;
+            background-color: #2563eb;
+            color: #ffffff;
+            font-weight: 600;
+            padding: 0.875rem 2rem;
+            border-radius: 0.75rem;
+            text-decoration: none;
+            box-shadow: 0 10px 15px -3px rgba(37, 99, 235, 0.2);
+            transition: background-color 0.2s ease;
+            text-align: center;
+        }
+
+        @media (min-width: 640px) {
+            .btn-hero-primary {
+                width: auto;
+            }
+        }
+
+        .btn-hero-primary:hover {
+            background-color: #1d4ed8;
+        }
+
+        .btn-hero-secondary {
+            width: 100%;
+            background-color: #ffffff;
+            color: #334155;
+            font-weight: 600;
+            padding: 0.875rem 2rem;
+            border-radius: 0.75rem;
+            text-decoration: none;
+            border: 1px solid #e2e8f0;
+            transition: background-color 0.2s ease;
+            text-align: center;
+        }
+
+        @media (min-width: 640px) {
+            .btn-hero-secondary {
+                width: auto;
+            }
+        }
+
+        .btn-hero-secondary:hover {
+            background-color: #f8fafc;
+        }
+
+        /* Why Custom / Value Proposition */
+        .value-section {
+            padding: 5rem 0;
+            border-top: 1px solid #f1f5f9;
+            border-bottom: 1px solid #f1f5f9;
+            background-color: #ffffff;
+        }
+
+        .value-content {
+            max-width: 56rem;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .section-title {
+            font-size: 1.875rem;
+            font-weight: 700;
+            color: #0f172a;
+            margin-bottom: 1.5rem;
+        }
+
+        .section-desc {
+            font-size: 1.125rem;
+            color: #475569;
+            line-height: 1.625;
+        }
+
+        .mt-4 {
+            margin-top: 1rem;
+        }
+
+        /* Features Section */
+        .features-section {
+            padding: 5rem 0;
+            background-color: #f8fafc;
+        }
+
+        .features-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .features-header p {
+            color: #475569;
+            max-width: 36rem;
+            margin: 0 auto;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+        }
+
+        @media (min-width: 768px) {
+            .features-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        .feature-card {
+            background-color: #ffffff;
+            border-radius: 1rem;
+            padding: 2rem;
+            border: 1px solid #e2e8f0;
+            box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.05);
+            transition: box-shadow 0.3s ease;
+        }
+
+        .feature-card:hover {
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+
+        .icon-box {
+            width: 3rem;
+            height: 3rem;
+            border-radius: 0.75rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .bg-blue-box { background-color: #eff6ff; color: #2563eb; }
+        .bg-emerald-box { background-color: #ecfdf5; color: #059669; }
+        .bg-purple-box { background-color: #faf5ff; color: #7c3aed; }
+
+        .icon-box svg {
+            width: 1.5rem;
+            height: 1.5rem;
+        }
+
+        .feature-card h3 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #0f172a;
+            margin-bottom: 1.5rem;
+        }
+
+        .feature-card > p {
+            color: #475569;
+            font-size: 0.875rem;
+            line-height: 1.625;
+            margin-bottom: 1.5rem;
+        }
+
+        .feature-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+            font-size: 0.875rem;
+            color: #475569;
+        }
+
+        .feature-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.5rem;
+        }
+
+        .check-blue { color: #3b82f6; font-weight: bold; }
+        .check-emerald { color: #10b981; font-weight: bold; }
+        .check-purple { color: #8b5cf6; font-weight: bold; }
+
+        /* Inside The System Tour */
+        .tour-section {
+            padding: 5rem 0;
+            background-color: #0f172a;
+            color: #ffffff;
+            border-top: 1px solid #1e293b;
+        }
+
+        .tour-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.375rem;
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            background-color: rgba(59, 130, 246, 0.1);
+            color: #60a5fa;
+            margin-bottom: 1rem;
+        }
+
+        .text-slate-400 {
+            color: #94a3b8;
+        }
+
+        .tour-layout {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 3rem;
+            align-items: start;
+        }
+
+        @media (min-width: 1024px) {
+            .tour-layout {
+                grid-template-columns: repeat(12, 1fr);
+            }
+        }
+
+        .tour-steps {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        @media (min-width: 1024px) {
+            .tour-steps {
+                grid-column: span 5;
+            }
+        }
+
+        .tour-step-card {
+            padding: 1.25rem;
+            border-radius: 0.75rem;
+            background-color: rgba(30, 41, 59, 0.2);
+            border: 1px solid #1e293b;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .tour-step-card:hover {
+            background-color: rgba(30, 41, 59, 0.4);
+        }
+
+        .tour-step-card.active {
+            border-color: rgba(37, 99, 235, 0.3);
+            background-color: rgba(30, 41, 59, 0.5);
+        }
+
+        .step-header {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .step-num {
+            width: 1.75rem;
+            height: 1.75rem;
+            border-radius: 0.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.75rem;
+            font-weight: 700;
+            font-family: monospace;
+        }
+
+        .num-blue { background-color: rgba(37, 99, 235, 0.2); color: #60a5fa; }
+        .num-emerald { background-color: rgba(5, 150, 105, 0.2); color: #34d399; }
+        .num-purple { background-color: rgba(124, 58, 237, 0.2); color: #c084fc; }
+        .num-amber { background-color: rgba(217, 119, 6, 0.2); color: #fbbf24; }
+
+        .step-title {
+            font-weight: 700;
+            color: #f1f5f9;
+            transition: color 0.2s ease;
+        }
+
+        .tour-step-card:hover .step-title {
+            color: #60a5fa;
+        }
+
+        .step-desc {
+            color: #94a3b8;
+            font-size: 0.75rem;
+            line-height: 1.625;
+            padding-left: 2.5rem;
+        }
+
+        /* Interactive Dashboard Viewer UI Window */
+        .tour-viewer {
+            background-color: #1e293b;
+            padding: 1rem;
+            border-radius: 1rem;
+            border: 1px solid rgba(51, 65, 85, 0.6);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            position: relative;
+        }
+
+        @media (min-width: 1024px) {
+            .tour-viewer {
+                grid-column: span 7;
+            }
+        }
+
+        .window-header {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding-bottom: 0.75rem;
+            margin-bottom: 0.75rem;
+            border-bottom: 1px solid rgba(51, 65, 85, 0.5);
+            color: #64748b;
+            font-size: 0.75rem;
+            font-family: monospace;
+        }
+
+        .dot { width: 0.75rem; height: 0.75rem; border-radius: 9999px; }
+        .dot-rose { background-color: rgba(244, 63, 94, 0.4); }
+        .dot-amber { background-color: rgba(245, 158, 11, 0.4); }
+        .dot-emerald { background-color: rgba(16, 185, 129, 0.4); }
+        .window-title { padding-left: 0.5rem; }
+
+        .window-content-stream {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            max-height: 580px;
+            overflow-y: auto;
+            padding-right: 0.25rem;
+        }
+
+        /* Scrollbar styles */
+        .window-content-stream::-webkit-scrollbar {
+            width: 4px;
+        }
+        .window-content-stream::-webkit-scrollbar-thumb {
+            background-color: #334155;
+            border-radius: 2px;
+        }
+
+        .comment-tag {
+            font-size: 0.75rem;
+            color: #94a3b8;
+            display: block;
+            margin-bottom: 0.25rem;
+            font-family: monospace;
+        }
+
+        .window-img {
+            border-radius: 0.75rem;
+            border: 1px solid #475569;
+            width: 100%;
+            box-shadow: inset 0 2px 4px 0 rgba(0,0,0,0.06);
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .tour-viewer:hover .window-img {
+            transform: scale(1.01);
+        }
+
+        .img-grid-2 {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+        }
+
+        .img-grid-3 {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 0.5rem;
+        }
+
+        .img-grid-3 .window-img {
+            border-radius: 0.5rem;
+        }
+
+        /* Footer Section */
+        #contact {
+            background-color: #0f172a;
+            color: #ffffff;
+            padding: 4rem 0;
+        }
+
+        .footer-top {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 3rem;
+            align-items: center;
+            border-bottom: 1px solid #1e293b;
+            padding-bottom: 3rem;
+            margin-bottom: 2rem;
+        }
+
+        @media (min-width: 1024px) {
+            .footer-top {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        .footer-heading {
+            font-size: 1.875rem;
+            font-weight: 700;
+            letter-spacing: -0.025em;
+            margin-bottom: 1rem;
+        }
+
+        .footer-text {
+            color: #94a3b8;
+        }
+
+        .footer-action {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        @media (min-width: 640px) {
+            .footer-action {
+                flex-direction: row;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .footer-action {
+                justify-content: flex-end;
+            }
+        }
+
+        .btn-footer {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            background-color: #2563eb;
+            color: #ffffff;
+            font-weight: 600;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.75rem;
+            transition: background-color 0.2s ease;
+            text-align: center;
+        }
+
+        .btn-footer:hover {
+            background-color: #1d4ed8;
+        }
+
+        .footer-bottom {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.875rem;
+            color: #64748b;
+        }
+
+        @media (min-width: 640px) {
+            .footer-bottom {
+                flex-direction: row;
+            }
+        }
+
+        .footer-meta-text {
+            margin-top: 1rem;
+        }
+
+        @media (min-width: 640px) {
+            .footer-meta-text {
+                margin-top: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header id="topheader">
+        <div class="container header-wrap">
+            <div class="header-title-area">
+                <h1>Q-Soft Solutions</h1>
+                <p>Innovative Software Development for Every Industry</p>
+            </div>
+            <nav class="main-nav">
+                <a href="index.html" class="nav-link">Our Portfolio</a>
+                <a href="erpModule.html" class="nav-link">System Tour</a>
+                <a href="#contact" class="btn-nav-contact">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero-section">
+        <div class="container hero-content">
+            <span class="badge">Tailored Business Systems</span>
+            <h1>Run Your Entire Business on a <br><span class="text-blue">Single, Custom Dashboard.</span></h1>
+            <p class="hero-desc">
+                Stop fighting with generic spreadsheets and disconnected software. We build tailored <strong>ERP, Inventory, and Accounting solutions</strong> designed specifically for your unique business workflows. Track stock, manage billing, and get crystal-clear financial insights—all from one secure, easy-to-use application.
+            </p>
+            <div class="hero-actions">
+                <a href="#contact" class="btn-hero-primary">Get a Free Demo</a>
+                <a href="#software-tour" class="btn-hero-secondary">Explore Features</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="why-custom" class="value-section">
+        <div class="container value-content">
+            <h2 class="section-title">Why Custom Software? Because Off-the-Shelf Doesn’t Fit Your Business.</h2>
+            <p class="section-desc">
+                Every business has unique workflows, specific tax structures, and distinct inventory tracking methods. Generic software forces you to change how you work. We do the opposite: <strong>we build software that adapts to you.</strong>
+            </p>
+            <p class="section-desc mt-4">
+                By integrating your Inventory Management, Financial Accounting, and Core Operations (ERP) into a single, cohesive database, we eliminate double-data entry, reduce human error, and give you real-time visibility into your cash flow and stock levels.
+            </p>
+        </div>
+    </section>
+
+    <section id="features" class="features-section">
+        <div class="container">
+            <div class="features-header">
+                <h2 class="section-title">Powerful Modular Features</h2>
+                <p>Everything you need to automate your day-to-day operations seamlessly.</p>
+            </div>
+
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="icon-box bg-blue-box">
+                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"></path></svg>
+                    </div>
+                    <h3>📦 Smart Inventory Management</h3>
+                    <p>Take total control of your stock levels without the guesswork.</p>
+                    <ul class="feature-list">
+                        <li>
+                            <span class="check-blue">✓</span>
+                            <span><strong>Real-Time Tracking:</strong> Monitor stock movements and warehouse balances instantly.</span>
+                        </li>
+                        <li>
+                            <span class="check-blue">✓</span>
+                            <span><strong>Automated Alerts:</strong> Get notified before items drop below reorder levels.</span>
+                        </li>
+                        <li>
+                            <span class="check-blue">✓</span>
+                            <span><strong>Batch Tracking:</strong> Manage expiry dates, batches, or unique item serials.</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="feature-card">
+                    <div class="icon-box bg-emerald-box">
+                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 002-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"></path></svg>
+                    </div>
+                    <h3>💼 Financial & Voucher Accounting</h3>
+                    <p>Keep your books pristine and audit-ready with zero accounting headaches.</p>
+                    <ul class="feature-list">
+                        <li>
+                            <span class="check-emerald">✓</span>
+                            <span><strong>Double-Entry Ledger:</strong> Effortless voucher posting system with custom descriptions.</span>
+                        </li>
+                        <li>
+                            <span class="check-emerald">✓</span>
+                            <span><strong>Compliant Invoicing:</strong> Generate professional tax invoices (including GST/local rules).</span>
+                        </li>
+                        <li>
+                            <span class="check-emerald">✓</span>
+                            <span><strong>Instant Reports:</strong> Profit & Loss, Balance Sheets, and Ledgers in a single click.</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="feature-card">
+                    <div class="icon-box bg-purple-box">
+                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"></path></svg>
+                    </div>
+                    <h3>⚙️ Integrated Business ERP</h3>
+                    <p>Connect your team and completely streamline your day-to-day operations.</p>
+                    <ul class="feature-list">
+                        <li>
+                            <span class="check-purple">✓</span>
+                            <span><strong>Tailored Workflows:</strong> Custom user roles, secure access permissions, and approval pipelines.</span>
+                        </li>
+                        <li>
+                            <span class="check-purple">✓</span>
+                            <span><strong>Unified Architecture:</strong> Lightweight, lightning-fast, and secure local or cloud databases.</span>
+                        </li>
+                        <li>
+                            <span class="check-purple">✓</span>
+                            <span><strong>Zero Data Silos:</strong> Your sales, stock, expenses, and vouchers communicate flawlessly.</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="software-tour" class="tour-section">
+        <div class="container">
+            <div class="features-header">
+                <span class="tour-badge">Inside The System</span>
+                <h2 class="section-title">Take a Look at the Interface</h2>
+                <p class="text-slate-400">A blazing-fast, lightweight desktop application engineered for accurate bookkeeping and real-time financial control.</p>
+            </div>
+
+            <div class="tour-layout">
+                <div class="tour-steps">
+                    <div class="tour-step-card active">
+                        <div class="step-header">
+                            <span class="step-num num-blue">01</span>
+                            <h3 class="step-title">Comprehensive Day Book & Vouchers</h3>
+                        </div>
+                        <p class="step-desc">Log transactions flawlessly with flexible, editable, and non-editable voucher control. Keep track of cash opening and closing balances automatically on a centralized screen.</p>
+                    </div>
+
+                    <div class="tour-step-card">
+                        <div class="step-header">
+                            <span class="step-num num-emerald">02</span>
+                            <h3 class="step-title">Detailed Ledger & Statement Management</h3>
+                        </div>
+                        <p class="step-desc">Deep-dive into client or account specifics using advanced keyboard shortcuts (like Accounts compatible macros) to search, audit, or review parent accounts instantly.</p>
+                    </div>
+
+                    <div class="tour-step-card">
+                        <div class="step-header">
+                            <span class="step-num num-purple">03</span>
+                            <h3 class="step-title">Automated Sales Invoicing & GST</h3>
+                        </div>
+                        <p class="step-desc">Calculate taxes and die costs, print delivery challans, Upload Envocie to GST website and genrate IRN E-Invoice, audit files, and use safety guardrails like "Cancel Invoice to Reverse Accounts & Stock" to avoid reporting mistakes.</p>
+                    </div>
+
+                    <div class="tour-step-card">
+                        <div class="step-header">
+                            <span class="step-num num-amber">04</span>
+                            <h3 class="step-title">Account Trees, P&L, and Balance Sheets</h3>
+                        </div>
+                        <p class="step-desc">Organize sub-ledgers using a logical tree breakdown. Real-time computations compile clear Profit & Loss and Balance Sheets without background waiting lags.</p>
+                    </div>
+                </div>
+
+                <div class="tour-viewer">
+                    <div class="window-header">
+                        <div class="dot dot-rose"></div>
+                        <div class="dot dot-amber"></div>
+                        <div class="dot dot-emerald"></div>
+                        <span class="window-title">Enterprise_Accounting_System.exe</span>
+                    </div>
+                    
+                    <div class="window-content-stream">
+                        <div>
+                            <span class="comment-tag">// Module View: Day Book Logs</span>
+                            <img src="images/DayBook_Blur.png" alt="Software Day Book Interface" class="window-img">
+                        </div>
+                        
+                        <div class="img-grid-2">
+                            <div>
+                                <span class="comment-tag">// Account Tree</span>
+                                <img src="images/AccountsTree_Blur.png" alt="Accounts Tree Structure" class="window-img">
+                            </div>
+                            <div>
+                                <span class="comment-tag">// Voucher Ledger</span>
+                                <img src="images/Ledger_Blur.png" alt="Ledger Voucher System" class="window-img">
+                            </div>
+                        </div>
+
+                        <div>
+                            <span class="comment-tag">// Module View: Tax & Sales Billing Engine</span>
+                            <img src="images/SalesInvoice_Blur.png" alt="Sales Invoice Entry Panel" class="window-img">
+                        </div>
+
+                        <div class="img-grid-3">
+                            <img src="images/BalanceSheet_Blur.png" alt="Balance Sheet View" class="window-img">
+                            <img src="images/ProfitandLoss_blur.png" alt="Profit and Loss Statement" class="window-img">
+                            <img src="images/LedgerReport_Blur.png" alt="Printable Ledger Report Ledger" class="window-img">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-top">
+                <div>
+                    <h2 class="footer-heading">Ready to simplify your business operations?</h2>
+                    <p class="footer-text">Get in touch today for a tailored quote and layout blueprint customized exactly to your company's scale.</p>
+                </div>
+                 <div class="footer-action">
+                    <!-- <a href="sandeepsurvekop@yahoo.co.in" class="btn-footer"> -->
+                        Mr. Sandeep Surve <br>
+                        Phone : +91 9890895464 <br>
+                        Email : sandeepsurvekop@gmail.com
+                        
+                </div>
+                <!-- <div class="footer-action">
+                    <a href="mailto:info@yourdomain.com" class="btn-footer">
+                        Contact Sales Development
+                    </a>
+                </div> -->
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Q-Soft Solutions. All rights reserved.</p>
+                <div class="footer-meta-text">
+                    <p>Built with Speed & Precision</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
