@@ -7,359 +7,17 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2 family=Rubik:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    
-    <style>
-        /* Base Setup & Resets */
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-        
-        .scroll-smooth {
-            scroll-behavior: smooth;
-        }
-
-        body { 
-            font-family: 'Rubik', sans-serif; 
-            background-color: #f8fafc;
-            color: #334155;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
-        }
-
-        /* Layout Container */
-        .container {
-            max-width: 80rem; /* 1280px */
-            margin: 0 auto;
-            width: 100%;
-        }
-
-        /* Header Styling */
-        #topheader {
-            position: sticky;
-            top: 0;
-            z-index: 50;
-            background-color: rgba(255, 255, 255, 0.9);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border-bottom: 1px solid rgba(226, 232, 240, 0.8);
-            box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-        }
-
-        .header-wrap {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: space-between;
-            gap: 1rem;
-            padding: 1rem 1.5rem;
-        }
-
-        @media (min-width: 640px) {
-            .header-wrap {
-                flex-direction: row;
-            }
-        }
-
-        .header-title-area {
-            text-align: center;
-        }
-
-        @media (min-width: 640px) {
-            .header-title-area {
-                text-align: left;
-            }
-        }
-
-        .header-title-area h1 {
-            font-size: 1.875rem;
-            font-weight: 800;
-            color: #0f172a;
-            letter-spacing: -0.025em;
-            line-height: 1.2;
-        }
-
-        .header-title-area p {
-            font-size: 0.875rem;
-            font-weight: 500;
-            color: #64748b;
-            margin-top: 0.125rem;
-        }
-
-        .main-nav {
-            display: flex;
-            align-items: center;
-            gap: 1.5rem;
-            font-weight: 600;
-            font-size: 0.875rem;
-        }
-
-        .nav-link {
-            text-decoration: none;
-            color: #475569;
-            transition: color 0.2s ease;
-        }
-
-        .nav-link:hover {
-            color: #2563eb;
-        }
-
-        .btn-primary {
-            display: inline-block;
-            text-decoration: none;
-            background-color: #2563eb;
-            color: #ffffff;
-            padding: 0.5rem 1rem;
-            border-radius: 0.5rem;
-            font-weight: 600;
-            box-shadow: 0 4px 6px -1px rgba(37, 99, 235, 0.1), 0 2px 4px -1px rgba(37, 99, 235, 0.06);
-            transition: background-color 0.2s ease;
-        }
-
-        .btn-primary:hover {
-            background-color: #1d4ed8;
-        }
-
-        /* Portfolio Main Grid */
-        #portfolio {
-            flex-grow: 1;
-            padding: 3rem 1.5rem;
-        }
-
-        .portfolio-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 2rem;
-        }
-
-        @media (min-width: 768px) {
-            .portfolio-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-
-        @media (min-width: 1024px) {
-            .portfolio-grid {
-                grid-template-columns: repeat(3, 1fr);
-            }
-        }
-
-        /* Project Cards */
-        .card {
-            background-color: #ffffff;
-            border-radius: 1rem;
-            border: 1px solid #e2e8f0;
-            padding: 1.25rem;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .card:hover {
-            transform: translateY(-0.5rem);
-            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-        }
-
-        .card-center {
-            justify-content: center;
-            align-items: center;
-        }
-
-        .img-container {
-            overflow: hidden;
-            border-radius: 0.75rem;
-            background-color: #f1f5f9;
-            height: 12rem;
-            margin-bottom: 1.25rem;
-            border: 1px solid #f1f5f9;
-        }
-
-        .card-img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s ease;
-        }
-
-        .card:hover .card-img {
-            transform: scale(1.05);
-        }
-
-        #Visitingcard-image {
-            object-fit: contain;
-        }
-
-        .card-title {
-            font-size: 1.25rem;
-            font-weight: 700;
-            color: #0f172a;
-            margin-bottom: 0.25rem;
-        }
-
-        .card-desc {
-            font-size: 0.875rem;
-            color: #64748b;
-            margin-bottom: 1.25rem;
-        }
-
-        /* Scrollable List styling */
-        .client-list {
-            display: flex;
-            flex-direction: column;
-            gap: 0.375rem;
-            max-height: 13rem;
-            overflow-y: auto;
-            padding-right: 0.25rem;
-        }
-
-        /* Basic custom scrollbar */
-        .client-list::-webkit-scrollbar {
-            width: 4px;
-        }
-        .client-list::-webkit-scrollbar-thumb {
-            background-color: #cbd5e1;
-            border-radius: 2px;
-        }
-
-        .client-item {
-            font-size: 0.75rem;
-            font-weight: 500;
-            color: #334155;
-            background-color: #f8fafc;
-            padding: 0.375rem 0.75rem;
-            border-radius: 0.375rem;
-            border-left: 2px solid #f59e0b;
-            box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-        }
-
-        .link-item {
-            color: #2563eb;
-            text-decoration: none;
-        }
-
-        .link-item:hover {
-            text-decoration: underline;
-        }
-
-        /* Footer Section */
-        #contact {
-            background-color: #0f172a;
-            color: #ffffff;
-            padding: 4rem 1.5rem;
-        }
-
-        .footer-top {
-            display: grid;
-        
-            grid-template-columns: 1fr;
-            gap: 3rem;
-            align-items: center;
-            border: 1px solid #1e293b;
-            padding-bottom: 3rem;
-            margin-bottom: 2rem;
-            border-bottom: 1px solid #1e293b;
-        }
-
-        @media (min-width: 1024px) {
-            .footer-top {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-
-        .footer-heading {
-            font-size: 1.875rem;
-            font-weight: 700;
-            
-            /* tracking-tight: -0.025em; */
-            margin-bottom: 1rem;
-        }
-
-        .footer-text {
-            color: #94a3b8;
-        }
-
-        .footer-action {
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-        }
-
-        @media (min-width: 640px) {
-            .footer-action {
-                flex-direction: row;
-            }
-        }
-
-        @media (min-width: 1024px) {
-            .footer-action {
-                justify-content: flex-end;
-            }
-        }
-
-        .btn-footer {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            text-decoration: none;
-            background-color: #2563eb;
-            color: #ffffff;
-            font-weight: 600;
-            padding: 0.75rem 1.5rem;
-            border-radius: 0.75rem;
-            transition: background-color 0.2s ease;
-            text-align: center;
-        }
-
-        .btn-footer:hover {
-            background-color: #1d4ed8;
-        }
-
-        .footer-bottom {
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            align-items: center;
-            font-size: 0.875rem;
-            color: #64748b;
-        }
-
-        @media (min-width: 640px) {
-            .footer-bottom {
-                flex-direction: row;
-            }
-        }
-
-        .footer-meta-text {
-            margin-top: 1rem;
-        }
-
-        @media (min-width: 640px) {
-            .footer-meta-text {
-                margin-top: 0;
-            }
-        }
-        .map iframe {
-            width: 100%;
-            height: 400px;
-            border: 0;
-            }
-
-    </style>
-    
+    <link rel="stylesheet" href="style_index.css"> 
+   
 </head>
 <body>
 
     <header id="topheader">
         <div class="container header-wrap">
             <div class="header-title-area">
+                <!-- <img src="images/Logo_Q.png" alt="Logo" style="width: 100px;height: 100px;"> -->
                 <h1>Q-Soft Solutions</h1>
-                <p>Innovative Software Development for Every Industry</p>
+                <p>TRANSFORMING IDEAS INTO DIGITAL WORLD</p>
             </div>
             <nav class="main-nav">
                 <a href="index.html" class="nav-link">Our Portfolio</a>
@@ -469,7 +127,7 @@
                             <a href="https://sayalisansurve.github.io/AnusayaTours-Travels/" target="_blank" class="link-item">Anusaya Tours & Travels</a>
                         </div>
                         <div class="client-item">
-                            <a href="https://sayalisansurve.github.io/GoodHealth-Homeopathic-Clinic/" target="_blank" class="link-item">Good Health Homeopathy Clinic</a>
+                            <a href="www.googdhealthhomeopathy.in/" target="_blank" class="link-item">Good Health Homeopathy Clinic</a>
                         </div>
                     </div>
                 </div>
@@ -494,15 +152,37 @@
                 <div>
                     <h2 class="footer-heading">Ready to simplify your business operations?</h2>
                     <p class="footer-text">Get in touch today for a tailored quote and layout blueprint customized exactly to your company's scale.</p>
-                </div>
-                <div class="footer-action">
+                    <!-- <div class="footer-action"> -->
+                    <div class="footer-contact">
                     <!-- <a href="sandeepsurvekop@yahoo.co.in" class="btn-footer"> -->
-                        Mr. Sandeep Surve <br>
-                        Phone : +91 9890895464 <br>
-                        Email : sandeepsurvekop@gmail.com
-                        
+                        <div>
+                            Mr. Sandeep Surve <br>
+                            Phone : +91 9890895464 <br>
+                            Email : sandeepsurvekop@gmail.com
+                        </div>
+                        <div>
+                            Mrs. Sayali Surve <br>
+                            Phone : +91 8999273659 <br>
+                            Email : sayalisansurve@gmail.com
+                        </div>
+                    </div>    
+                    <!-- </div> -->
                 </div>
+                
+                 <form class="contact-form" id="WhatsApp">
+                    <input type="text" placeholder="Your Name">
+                    <input type="tel" placeholder="Phone Number">
+                    <!-- <select>
+                        <option>Select Appointment Type</option>
+                        <option>New Appointment</option>
+                        <option>Follow Up</option>
+                        <option>Online Consultation</option>
+                    </select> -->
+                    <textarea rows="4" placeholder="Your Message"></textarea>
+                    <button type="button" onclick="sendToWhatsApp()">Send Enquiry via WhatsApp</button>
+                </form>
             </div>
+           
             <div class="footer-bottom">
                 <p>&copy; 2026 Q-Soft Solutions. All rights reserved.</p>
                 <!-- <div class="footer-meta-text">
